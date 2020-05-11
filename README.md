@@ -31,10 +31,6 @@ The trained model and HaarCascade utilities needed to run the facial expression 
 
 The actual facial expression recognition part of the application can be found in the **emotion_classifier.py** file which can be modified to run outside of Polar. 
 
-### Polar Game:
-To run the Polar game:
-
-
 ### Troubleshooting:
 **error: (-215:Assertion failed):** Depending on host computer/camera drives, sometimes a OpenCV cv2.error can be encountered if the camera doesn't return any feed. If this happens, exit the application and run again. 
 
