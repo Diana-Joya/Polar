@@ -31,12 +31,13 @@ The easiest way of installing the required dependencies is to clone the reposito
 
 ## Polar Game:
 To run the Polar game:
-1. Make sure you've installed all dependencies required: ([instructions here](https://github.com/Diana-Joya/Polar/blob/master/README.md#installing-dependencies))
+1. Make sure you've installed all dependencies required ([instructions here](https://github.com/Diana-Joya/Polar/blob/master/README.md#installing-dependencies))
 2. Run:
+<p align=center>
 ``` python main.py ```
-
+</p>
 ### Troubleshooting:
-**error: (-215:Assertion failed):** Depending on host computer/camera drives, sometimes a OpenCV cv2.error can be encountered if the camera doesn't return any feed. If this happens, exit the application and run again. 
+**error: (-215:Assertion failed):** Depending on the camera drives in the host computer, sometimes a OpenCV cv2.error can be encountered if the camera doesn't return any feed. If this happens, exit the application and run again. 
 
 **Facial Expression Accuracy:** Expression recognition accuracy can be affected by the angle at which the camera receives facial input from. For example, if you're having trouble getting an accurate read for 'Sad', slightly tilting your face forward might help. If your camera is too low from a front view of your face, it might have trouble reading 'Surprise', etc... The best way to troubleshoot this issue is by overexaggerating gestures and playing with the camera angles. 
 
