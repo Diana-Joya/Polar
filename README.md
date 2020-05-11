@@ -11,6 +11,7 @@ Each facial expression reaction provides a different user experience so try them
 To have the best experience while running this application, the following libraries need to be installed:
 
 ```
+- Python 3.6
 - pip (any version)
 - Keras 2.2.4 
 - tensorflow 1.13.1
