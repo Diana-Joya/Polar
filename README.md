@@ -33,9 +33,9 @@ The easiest way of installing the required dependencies is to clone the reposito
 To run the Polar game:
 1. Make sure you've installed all dependencies required ([instructions here](https://github.com/Diana-Joya/Polar/blob/master/README.md#installing-dependencies))
 2. Run:
-<p align=center>
-``` python main.py ```
-</p>
+
+```<p align=center> python main.py </p>```
+
 ### Troubleshooting:
 **error: (-215:Assertion failed):** Depending on the camera drives in the host computer, sometimes a OpenCV cv2.error can be encountered if the camera doesn't return any feed. If this happens, exit the application and run again. 
 
