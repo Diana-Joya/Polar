@@ -1,5 +1,4 @@
-from tkinter import *
-from static_ui import ai_frame, window
+from static_ui import window
 
 
 class BreathingExercise:
