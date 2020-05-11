@@ -19,7 +19,7 @@ To have the best experience while running this application, the following librar
 - pygame 2.0
 ```
 
-* *Note:* * Polar requires specific versions of some of these libraries to prevent the program from crashing. 
+*Note:* Polar requires specific versions of some of these libraries to prevent the program from crashing. 
 
 ### Facial Expression Recognition Training:
 The dataset used to train the facial expression recognition model used in Polar, was provided by Kaggle and can be found in the **Challenges in Representation Learning: Facial Expression Recognition Challenge**, for more information on this data set see "[Kaggle Facial Expression Recognition Challenge](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)"
