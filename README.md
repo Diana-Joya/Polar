@@ -33,7 +33,6 @@ The easiest way of installing the required dependencies is to clone the reposito
 To run the Polar game:
 1. Make sure you've installed all dependencies required ([instructions here](https://github.com/Diana-Joya/Polar/blob/master/README.md#installing-dependencies))
 2. Run:
-
 ```python main.py```
 
 ### Troubleshooting:
