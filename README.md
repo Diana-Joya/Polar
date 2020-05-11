@@ -8,11 +8,12 @@ Each facial expression reaction provides a different user experience so try them
 
 ## Usage
 ### Dependencies:
+This project was created using Python 3.6 to avoid conflicts with Keras and TensorFlow.
 To have the best experience while running this application, the following libraries need to be installed:
 
 ```
 - Python 3.6
-- pip (any version)
+- pip (latest version)
 - Keras 2.2.4 
 - tensorflow 1.13.1
 - Pillow (any version)
@@ -21,6 +22,10 @@ To have the best experience while running this application, the following librar
 ```
 
 *Note:* Polar requires specific versions of some of these libraries to prevent the program from crashing. 
+
+### Installing Dependencies:
+The easiest way of installing the required dependencies is to clone the repository and run:
+``` pip install -r requirements.txt ```
 
 ### Facial Expression Recognition Training:
 The dataset used to train the facial expression recognition model used in Polar, was provided by Kaggle and can be found in the **Challenges in Representation Learning: Facial Expression Recognition Challenge**, for more information on this data set see "[Kaggle Facial Expression Recognition Challenge](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)"
@@ -31,8 +36,16 @@ The trained model and HaarCascade utilities needed to run the facial expression 
 
 The actual facial expression recognition part of the application can be found in the **emotion_classifier.py** file which can be modified to run outside of Polar. 
 
+### Polar Game:
+To run the Polar game:
+1. Make sure you've installed all dependencies required: ([instructions here]())
+2. Run:
+``` python main.py ```
+
 ### Troubleshooting:
 **error: (-215:Assertion failed):** Depending on host computer/camera drives, sometimes a OpenCV cv2.error can be encountered if the camera doesn't return any feed. If this happens, exit the application and run again. 
+**Facial Expression Accuracy:** Expression recognition accuracy can be affected by the angle at which the camera receives facial input from. For example, if you're having trouble getting an accurate read for 'Sad', slightly tilting your face forward might help. If your camera is too low from a front view of your face, it might have trouble reading 'Surprise', etc... The best way to troubleshoot this issue is by overexaggerating gestures and playing with the camera angles. 
+*Note:* I also noticed the application had more trouble predicting my expressions if I had my glasses or any other accesory (hair included) covering part of my face.
 
 
 ## Future Work
