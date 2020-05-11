@@ -6,7 +6,7 @@ Polar identifies 5 emotions linked to the user's facial expressions (Neutral, Ha
 
 Each facial expression reaction provides a different user experience so try them all! 
 
-## Installation and Usage
+## Usage
 ### Dependencies:
 To have the best experience while running this application, the following libraries need to be installed:
 
