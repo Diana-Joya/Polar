@@ -2,6 +2,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'            # Hide TensorFlow GPU Warnings
 import logging
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
+import warnings
+warnings.filterwarnings('ignore', category=FutureWarning)
 from keras.models import load_model
 from keras.preprocessing.image import img_to_array
 from keras.backend import clear_session
@@ -15,6 +17,7 @@ clear_session()
 # --------------------- Import Classifiers ---------------------
 face_classifier = cv2.CascadeClassifier('model\haarcascade_frontalface_default.xml')
 classifier = load_model('model\emotion_vgg_model.h5')
+classifier._make_predict_function()
 
 # --------------------- Variables ---------------------
 class_labels = ['Angry', 'Happy', 'Neutral', 'Sad', 'Surprise']
@@ -37,6 +40,7 @@ def emotion_recognition(e, dui):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_classifier.detectMultiScale(gray, 1.3, 6)
     current_emotion = 'Neutral'
+    label = "Neutral"
 
     for (x, y, w, h) in faces:
         cv2.rectangle(gray, (x, y), (x+w, y+h), rgb_color, 2)

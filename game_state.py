@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import threading
 from static_ui import raise_frame, start_frame, face_rec_frame, ai_frame, window
-from emotion_classifier import emotion_recognition, action
+from emotion_classifier import emotion_recognition, action, cap
 
 
 class GameState:
@@ -36,6 +36,7 @@ class GameState:
 
     def quit_app(self):
         if messagebox.askyesno(title='Quit', message='Do You Really Want to Quit?'):
+            cap.release()
             window.destroy()
         else:
             pass
@@ -47,9 +48,13 @@ class GameState:
             pass
 
     def check_user_emotion(self):
+        emotion_check = action()
+        if emotion_check == 'Neutral':
+            print("neutral doesn't get much fun!")
+            return
         self.reset_thread()
-        yes_text, reaction_text, emotion = self.react_to_user()
-        reaction_option_text = Label(face_rec_frame, text=reaction_text, anchor=CENTER, background="black",
+        yes_text, reaction_text, emotion = self.react_to_user(emotion_check)
+        reaction_option_text = Label(face_rec_frame, text=reaction_text, anchor=CENTER, background="LightSkyBlue2",
                                      font=("Helvetica", 14), fg="white", width=100,
                                      height=2).grid(row=2, column=0, columnspan=2, sticky=N + S + W + E)
         yes_button = Button(face_rec_frame, text=yes_text, height=2, width=26,
@@ -57,9 +62,7 @@ class GameState:
         no_button = Button(face_rec_frame, text="Try Again!", height=2, width=26,
                            command=lambda: self.start(try_again=True)).grid(row=3, column=1, sticky=N + S + W + E)
 
-    def react_to_user(self):
-        emotion_check = action()
-        print(emotion_check)
+    def react_to_user(self, emotion_check):
         self.dui.frame_stream(emotion_check + 'Reaction')
         print('You\'re feeling: ', emotion_check)
         return self.reaction_options(emotion_check)

@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 # -------------------- GUI --------------------
 window = Tk()
 window.title("Emotion Recognition")
-window.configure(background='black')
+window.configure(background='white')
 
 # ------------------ Graphics Windows ------------------
 # Start Frame
@@ -30,6 +30,7 @@ ai_frame.grid_rowconfigure(0, weight=1)
 ai_frame.grid_rowconfigure(1, weight=1)
 ai_frame.grid_rowconfigure(2, weight=1)
 ai_frame.grid_columnconfigure(0, weight=1)
+ai_frame.grid_columnconfigure(1, weight=1)
 
 
 def raise_frame(frame):
@@ -37,32 +38,30 @@ def raise_frame(frame):
 
 
 # ------------------ Start Window -------------------
-main_title_text = Label(start_frame, text="Welcome to my application", anchor=CENTER, background="LightSkyBlue2",
+main_title_text = Label(start_frame, text="Hi! I'm Polar!", anchor=CENTER, background="LightSkyBlue2",
                         font=("Helvetica", 14), fg="SlateBlue2", width=100, height=2).grid(row=0, column=0, sticky=N+S+W+E)
 startScreen = 'polar/screens/startScreen.png'
-img = ImageTk.PhotoImage(Image.open(startScreen))
+img = Image.open(startScreen)
+img = img.resize((480, 480), Image.ANTIALIAS)
 startImg = Label(start_frame)
 startImg.grid(row=1, column=0, sticky=N+S+W+E)
-startImg.imgtk = img
-startImg.configure(width=450, height=500, image=startImg.imgtk)
+startImg.imgtk = ImageTk.PhotoImage(img)
+startImg.configure(width=450, height=450, image=startImg.imgtk)
 
 
 # ------------------- F.R. Window -------------------
 fr_title_text = Label(face_rec_frame, text="Can I Guess How You Are Feeling?", anchor=CENTER,
-                      background="black", font=("Helvetica", 14),
-                      fg="white", height=2).grid(row=0, column=0, columnspan=2, sticky=N+S+W+E)
+                      background="LightSkyBlue2", font=("Helvetica", 14),
+                      fg="SlateBlue2", height=2).grid(row=0, column=0, columnspan=2, sticky=N+S+W+E)
 
 
 # ------------------ AI Window -------------------
 ai_title_text = Label(ai_frame, text="AI Window", anchor=CENTER,
-                      background="black", font=("Helvetica", 14),
-                      fg="white", width=100, height=2).grid(row=0, column=0, columnspan=2, sticky=N+S+W+E)
-reset_emotion_button = Button(ai_frame, text="Restart Emotion Recognition", height=2, width=26,
-                              command=lambda: raise_frame(face_rec_frame)).grid(row=3, column=1, sticky=N+S+W+E)
+                      background="LightSkyBlue2", font=("Helvetica", 14),
+                      fg="SlateBlue2", width=100, height=2).grid(row=0, column=0, columnspan=2, sticky=N+S+W+E)
 
 display1 = Label(face_rec_frame)
 display1.grid(row=1, column=1, columnspan=1, sticky=N+S+W+E)
 display2 = Label(face_rec_frame)
 display2.grid(row=1, column=0, columnspan=1, sticky=N+S+W+E)
-ai_display = Label(ai_frame)
-ai_display.grid(row=1, column=0, columnspan=2, sticky=N + S + W + E)
+

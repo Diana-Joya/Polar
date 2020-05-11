@@ -1,65 +1,68 @@
 from tkinter import *
 import random
 from static_ui import ai_frame, raise_frame
+from breathing_exercise import BreathingExercise
 
 
 class EmotionMap:
     def __init__(self, dui, mp):
         self.dui = dui
         self.mp = mp
+        self.be = BreathingExercise(dui)
 
     def map_emotion(self, emotion):
         self.dui.frame_stream(emotion)
         if emotion == 'Sad':
-            self.map_to_sad()
+            self.map_to_sad(emotion)
         elif emotion == 'Angry':
-            self.map_to_angry()
+            self.map_to_angry(emotion)
         elif emotion == 'Happy':
-            self.map_to_happy()
+            self.map_to_happy(emotion)
         elif emotion == 'Surprise':
-            self.map_to_surprised()
+            self.map_to_surprised(emotion)
         raise_frame(ai_frame)
 
-    def map_to_surprised(self):
-        fact = self.surprised()
+    def map_to_surprised(self, emotion):
+        path = 'reactions/reaction_surprised/facts.txt'
+        fact, reaction = self.text_based(path)
         self.dui.set_emotion_title('Did You Know?!')
-        reaction_text = Label(ai_frame, text=fact, anchor=CENTER, background="black", font=("Helvetica", 14),
-                              fg="white", width=100, height=2).grid(row=2, column=0, columnspan=2, sticky=N + S + W + E)
+        self.dui.ai_frame_stream(emotion, reaction)
+        self.dui.set_speech_bubble(fact)
         another_fact_button = Button(ai_frame, text="Another one, Please!", height=2, width=26,
-                                     command=lambda: self.map_emotion('Surprise')).grid(row=3, column=0, columnspan=2,
-                                                                                        sticky=N + S + W + E)
+                                     command=lambda: self.map_emotion(emotion)).grid(row=2, column=0, columnspan=2,
+                                                                                     rowspan=2, sticky=N + S + W + E)
 
-    def map_to_sad(self):
-        joke = self.sad()
+    def map_to_sad(self, emotion):
+        path = 'reactions/reaction_sad/jokes.txt'
+        joke, reaction = self.text_based(path)
         self.dui.set_emotion_title('Laughter is the Best Medicine')
-        reaction_text = Label(ai_frame, text=joke, anchor=CENTER, background="black", font=("Helvetica", 14),
-                              fg="white", width=100, height=2).grid(row=2, column=0, columnspan=2, sticky=N + S + W + E)
+        self.dui.ai_frame_stream(emotion, reaction)
+        self.dui.set_speech_bubble(joke)
         another_joke_button = Button(ai_frame, text="Another one, Please!", height=2, width=26,
-                                     command=lambda: self.map_emotion('Sad')).grid(row=3, column=0, columnspan=2,
-                                                                                   sticky=N + S + W + E)
+                                     command=lambda: self.map_emotion(emotion)).grid(row=2, column=0, columnspan=2,
+                                                                                     rowspan=2, sticky=N + S + W + E)
 
-    def map_to_angry(self):
-        self.dui.set_emotion_title('Take A Deep Breath')
+    def map_to_angry(self, emotion):
+        self.dui.set_emotion_title("Let's Take a Deep Breath!")
+        self.dui.ai_frame_stream(emotion, 'Relaxing')
+        self.be.state = 0
+        self.be.relax_countdown(emotion, 'Relaxed')
         textfile = 'reactions/reaction_angry/songs.txt'
         reaction_path = 'reactions/reaction_angry/'
         self.mp.get_song(reaction_path, textfile)
-        self.mp.set_music_ui()
 
-    def map_to_happy(self):
+    def map_to_happy(self, emotion):
         self.dui.set_emotion_title('Party Time!')
+        self.dui.ai_frame_stream(emotion, 'Party')
         textfile = 'reactions/reaction_happy/songs.txt'
         reaction_path = 'reactions/reaction_happy/'
         self.mp.get_song(reaction_path, textfile)
-        self.mp.set_music_ui()
 
     def get_from_file(self, path):
         line = open(path).read().splitlines()
         return random.choice(line)
 
-    def sad(self):
-        path = 'reactions/reaction_sad/jokes.txt'
-        return self.get_from_file(path)
-
-    def surprised(self):
-        path = 'reactions/reaction_surprised/facts.txt'
-        return self.get_from_file(path)
+    def text_based(self, path):
+        line = self.get_from_file(path)
+        split = line.split(':')
+        return split[0], split[1]
